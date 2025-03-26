@@ -158,3 +158,23 @@ void infixToPrefix(char infix[], char prefix[]) {
 
     // Membalikkan ekspresi Postfix untuk mendapat Prefix
     strcpy(prefix, strrev(reversedPrefix));
+}
+
+// Fungsi untuk konversi dari Prefix ke Infix
+void prefixToInfix(char prefix[], char infix[]) {
+    Stack s;
+    initStack(&s);
+    int i = strlen(prefix) - 1;
+
+    while (i >= 0) {
+        char c = prefix[i];
+
+        if (isalnum(c)) { // Periksa apakah karakter adalah huruf atau angka
+            char temp[2] = {c, '\0'};
+            push(&s, temp);
+        } else if (isOperator(c)) {
+            char *op1 = pop(&s);
+            char *op2 = pop(&s);
+            char temp[MAX];
+            sprintf(temp, "(%s%c%s)", op1, c, op2);
+            push(&s, temp);
