@@ -288,3 +288,13 @@ int main() {
             break;
 
             default: 
+            printf("Pilihan tidak valid!\n"); 
+            continue;
+        }
+        
+        printf("Hasil: %s\n", result);
+    } while (choice != 7);
+    
+    printf("Terima kasih!\n");
+    return 0;
+}
