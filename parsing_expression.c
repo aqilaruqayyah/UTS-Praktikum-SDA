@@ -138,3 +138,23 @@ void postfixToInfix(char postfix[], char infix[]) {
 void infixToPrefix(char infix[], char prefix[]) {
     Stack s;
     initStack(&s);
+    int i = 0, j = 0;
+    char reversedInfix[MAX], reversedPrefix[MAX];
+
+    // Membalikkan ekspresi Infix
+    strcpy(reversedInfix, strrev(infix));
+
+    // Mengganti '(' dengan ')' dan sebaliknya
+    for (i = 0; reversedInfix[i] != '\0'; i++) {
+        if (reversedInfix[i] == '(') {
+            reversedInfix[i] = ')';
+        } else if (reversedInfix[i] == ')') {
+            reversedInfix[i] = '(';
+        }
+    }
+
+    // Ubah Infix terbalik menjadi Postfix
+    infixToPostfix(reversedInfix, reversedPrefix);
+
+    // Membalikkan ekspresi Postfix untuk mendapat Prefix
+    strcpy(prefix, strrev(reversedPrefix));
