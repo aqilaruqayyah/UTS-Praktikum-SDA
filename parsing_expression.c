@@ -238,3 +238,22 @@ void postfixToPrefix(char postfix[], char prefix[]) {
 // Fungsi main dengan menu
 int main() {
     int choice;
+    char input[MAX], result[MAX];
+    
+    do {
+        printf("\n+-------------------------------+\n");
+        printf("|      Menu Konversi Ekspresi   |\n");
+        printf("+-------------------------------+\n");
+        printf("| 1. Infix ke Postfix           |\n");
+        printf("| 2. Postfix ke Infix           |\n");
+        printf("| 3. Infix ke Prefix            |\n");
+        printf("| 4. Prefix ke Infix            |\n");
+        printf("| 5. Prefix ke Postfix          |\n");
+        printf("| 6. Postfix ke Prefix          |\n");
+        printf("| 7. Keluar                     |\n");
+        printf("+-------------------------------+\n");
+        printf("Pilih opsi (1-7): ");
+        scanf("%d", &choice);
+        getchar();
+
+        if (choice == 7) break;
