@@ -278,3 +278,13 @@ int main() {
             case 4: 
             prefixToInfix(input, result); 
             break;
+
+            case 5: 
+            prefixToPostfix(input, result); 
+            break;
+
+            case 6: 
+            postfixToPrefix(input, result); 
+            break;
+
+            default: 
