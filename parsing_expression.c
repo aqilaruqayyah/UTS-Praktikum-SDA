@@ -58,3 +58,23 @@ char *peek(Stack *s) {
         return NULL;
     }
     return s->top->data;
+}
+
+// Fungsi untuk memeriksa apakah suatu karakter adalah operator
+int isOperator(char c) {
+    return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
+}
+
+// Fungsi untuk mendapatkan prioritas suatu operator
+int precedence(char c) {
+    if (c == '^') return 3;
+    if (c == '*' || c == '/') return 2;
+    if (c == '+' || c == '-') return 1;
+    return 0;
+}
+
+// Fungsi untuk konversi dari Infix ke Postfix
+void infixToPostfix(char infix[], char postfix[]) {
+    Stack s;
+    initStack(&s);
+    int i = 0, j = 0;
