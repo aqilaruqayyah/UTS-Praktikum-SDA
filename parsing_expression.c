@@ -18,3 +18,22 @@ typedef struct {
 
 // Fungsi untuk menginisialisasi stack
 void initStack(Stack *s) {
+        s->top = NULL;
+}
+
+// Fungsi untuk memeriksa apakah stack kosong
+int isEmpty(Stack *s) {
+    return s->top == NULL;
+}
+
+// Fungsi untuk memasukkan elemen ke stack
+void push(Stack *s, char *c) {
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    if (!newNode) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+    strcpy(newNode->data, c);
+    newNode->next = s->top;
+    s->top = newNode;
+}
