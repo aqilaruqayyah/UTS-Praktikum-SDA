@@ -37,3 +37,24 @@ void push(Stack *s, char *c) {
     newNode->next = s->top;
     s->top = newNode;
 }
+
+// Fungsi untuk mengeluarkan elemen dari stack
+char *pop(Stack *s) {
+    if (isEmpty(s)) {
+        printf("Stack underflow\n");
+        return NULL;
+    }
+    Node *temp = s->top;
+    char *data = (char *)malloc(MAX * sizeof(char));
+    strcpy(data, temp->data);
+    s->top = temp->next;
+    free(temp);
+    return data;
+}
+
+// Fungsi untuk mendapatkan elemen teratas dari stack
+char *peek(Stack *s) {
+    if (isEmpty(s)) {
+        return NULL;
+    }
+    return s->top->data;
