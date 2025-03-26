@@ -98,3 +98,23 @@ void infixToPostfix(char infix[], char postfix[]) {
             }
             char temp[2] = {c, '\0'};
             push(&s, temp);
+        }
+        i++;
+    }
+
+    while (!isEmpty(&s)) {
+        postfix[j++] = pop(&s)[0];
+    }
+
+    postfix[j] = '\0';
+}
+
+// Fungsi untuk konversi dari Postfix ke Infix
+void postfixToInfix(char postfix[], char infix[]) {
+    Stack s;
+    initStack(&s);
+    int i = 0;
+
+    while (postfix[i] != '\0') {
+        char c = postfix[i];
+
