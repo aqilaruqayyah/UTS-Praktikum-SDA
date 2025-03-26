@@ -78,3 +78,23 @@ void infixToPostfix(char infix[], char postfix[]) {
     Stack s;
     initStack(&s);
     int i = 0, j = 0;
+
+    while (infix[i] != '\0') {
+        char c = infix[i];
+
+        if (isalnum(c)) { // Periksa apakah karakter adalah huruf atau angka
+            postfix[j++] = c;
+        } else if (c == '(') {
+            char temp[2] = {c, '\0'};
+            push(&s, temp);
+        } else if (c == ')') {
+            while (!isEmpty(&s) && strcmp(peek(&s), "(") != 0) {
+                postfix[j++] = pop(&s)[0];
+            }
+            pop(&s); // Menghapus '(' dari stack
+        } else if (isOperator(c)) {
+            while (!isEmpty(&s) && precedence(peek(&s)[0]) >= precedence(c)) {
+                postfix[j++] = pop(&s)[0];
+            }
+            char temp[2] = {c, '\0'};
+            push(&s, temp);
