@@ -198,3 +198,23 @@ void prefixToPostfix(char prefix[], char postfix[]) {
             char temp[2] = {c, '\0'};
             push(&s, temp);
         } else if (isOperator(c)) {
+            char *op1 = pop(&s);
+            char *op2 = pop(&s);
+            char temp[MAX];
+            sprintf(temp, "%s%s%c", op1, op2, c);
+            push(&s, temp);
+        }
+        i--;
+    }
+
+    strcpy(postfix, pop(&s));
+}
+
+// Fungsi untuk konversi dari Postfix ke Prefix
+void postfixToPrefix(char postfix[], char prefix[]) {
+    Stack s;
+    initStack(&s);
+    int i = 0;
+
+    while (postfix[i] != '\0') {
+        char c = postfix[i];
