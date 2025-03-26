@@ -118,3 +118,23 @@ void postfixToInfix(char postfix[], char infix[]) {
     while (postfix[i] != '\0') {
         char c = postfix[i];
 
+        if (isalnum(c)) { // Periksa apakah karakter adalah huruf atau angka
+            char temp[2] = {c, '\0'};
+            push(&s, temp);
+        } else if (isOperator(c)) {
+            char *op1 = pop(&s);
+            char *op2 = pop(&s);
+            char temp[MAX];
+            sprintf(temp, "(%s%c%s)", op2, c, op1);
+            push(&s, temp);
+        }
+        i++;
+    }
+
+    strcpy(infix, pop(&s));
+}
+
+// Fungsi untuk konversi dari Infix ke Prefix
+void infixToPrefix(char infix[], char prefix[]) {
+    Stack s;
+    initStack(&s);
