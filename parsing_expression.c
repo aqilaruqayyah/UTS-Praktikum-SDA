@@ -218,3 +218,23 @@ void postfixToPrefix(char postfix[], char prefix[]) {
 
     while (postfix[i] != '\0') {
         char c = postfix[i];
+
+        if (isalnum(c)) { // Periksa apakah karakter adalah huruf atau angka
+            char temp[2] = {c, '\0'};
+            push(&s, temp);
+        } else if (isOperator(c)) {
+            char *op1 = pop(&s);
+            char *op2 = pop(&s);
+            char temp[MAX];
+            sprintf(temp, "%c%s%s", c, op2, op1);
+            push(&s, temp);
+        }
+        i++;
+    }
+
+    strcpy(prefix, pop(&s));
+}
+
+// Fungsi main dengan menu
+int main() {
+    int choice;
