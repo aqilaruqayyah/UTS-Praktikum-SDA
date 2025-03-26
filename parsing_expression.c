@@ -257,3 +257,24 @@ int main() {
         getchar();
 
         if (choice == 7) break;
+
+        printf("Masukkan ekspresi: ");
+        fgets(input, MAX, stdin);
+        input[strcspn(input, "\n")] = 0;
+
+        switch (choice) {
+            case 1: 
+            infixToPostfix(input, result); 
+            break;
+
+            case 2: 
+            postfixToInfix(input, result); 
+            break;
+
+            case 3: 
+            infixToPrefix(input, result); 
+            break;
+
+            case 4: 
+            prefixToInfix(input, result); 
+            break;
